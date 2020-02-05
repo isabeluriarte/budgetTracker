@@ -9,9 +9,9 @@ request.onupgradeneeded = function (event) {
   // create object store called "pending" and set autoIncrement to true
   const db = event.target.result;
 
-  const pending = db.createObjectStore("budget", { autoIncrement: true });
+  const pending = db.createObjectStore("pending", { autoIncrement: true });
 
-  saveRecord(pending);
+  // saveRecord(pending);
 };
 
   request.onsuccess = function (event) {
@@ -42,7 +42,7 @@ request.onupgradeneeded = function (event) {
     // access your pending object store
     const pendingStore = transaction.objectStore("pending");
     // get all records from store and set to a variable
-    const getAll = pendingStore.getAll({})
+    const getAll = pendingStore.getAll();
 
     getAll.onsuccess = function () {
       if (getAll.result.length > 0) {
